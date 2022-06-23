@@ -27,7 +27,8 @@ classdef CKinodynamicRRT  < handle
                                        is_state_connection_in_collision_func, ...
                                        x_initial, ...
                                        local_motion_planning_func, ...
-                                       single_step_state_propagation_function)
+                                       single_step_state_propagation_function, ...
+                                       state_distance_func)
             %CKINODYNAMICRRT Construct an instance of this class
             %   Detailed explanation goes here
             
@@ -37,7 +38,7 @@ classdef CKinodynamicRRT  < handle
             % Generate Tree
             obj.root_node = CKinodynamicRRTNode(x_initial, [], [], 0);
             % Generate node map
-            obj.node_map  = CKinodynamicRRTNearestNodeMap(obj.root_node); 
+            obj.node_map  = CKinodynamicRRTNearestNodeMap(obj.root_node, state_distance_func); 
             % Collision checking functions
             obj.is_state_in_collision_function = ...
                 is_state_in_collision_func;
