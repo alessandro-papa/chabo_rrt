@@ -23,7 +23,8 @@ classdef CKinodynamicRRTNearestNodeMap < handle
         end
         function nearest_node = find_nearest(obj, x)
             % Find nearest index
-            nearest_idx  = knnsearch(obj.X, x', 'Distance', 'euclidean');
+%             nearest_idx  = knnsearch(obj.X, x', 'Distance', 'euclidean');
+            nearest_idx  = knnsearch(obj.X, x', 'Distance', @chabo_state_distance);
             % Return nearest node
             nearest_node = obj.node_cell{nearest_idx,1};
         end
